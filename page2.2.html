@@ -1,19 +1,59 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>British $$</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="main.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>
-            spin the wheel 
-            
+        <div style="position: absolute; top:50px; left: 250px">
+            <canvas id="canvasOne" width="700" height="500"></canvas>
         </div>
+        <h1> "You Chose British $" </h1> 
+        <script type="text/javascript">
+            var theCanvas=document.getElementById("canvasOne");
+             
+            theCanvas.addEventListener("click", onClick);
+            rect = theCanvas.getBoundingClientRect();
+            
+            var context=theCanvas.getContext("2d");
+            console.log("context: "+context);
+            function drawScreen() {
+                context.fillStyle="#B7F5FF";
+                context.fillRect(0, 0, 700, 500);
+                context.fillStyle="#003279";
+                context.font="30px Sans-Serif";
+                context.textBaseline="top";
+                context.fillText("Spin the Wheel of Hunger!", 160, 40);
+                context.font="20px Sans-Serif";
+                context.textBaseline="top";
+                context.fillText("You chose: British, $$", 250, 20);
+                
+                var centerX = theCanvas.width / 2;
+                var centerY = theCanvas.height / 1.75;
+                var radius = 200;
+
+                context.beginPath();
+                context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+                context.fillStyle = '#FF755D'; 
+                context.fill();
+            }
+            function onClick(event) {
+                console.log("Page cooridnates: "+event.pageX, event.pageY);
+                console.log("Mouse Click location on the canvas: "+(event.pageX-rect.left), (event.pageY-rect.top));
+            }
+            
+            drawScreen();
+            
+            var img = new Image();
+            var div = document.getElementById('foo'); 
+            
+            img.onload = function() {
+                div.appendChild(img); 
+            }; 
+            
+            img.src = 'path/to/unnamed.png'; 
+        </script>
     </body>
 </html>
+
